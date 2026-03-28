@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root {
+  --ubuntu-orange: #E95420;
+  --ubuntu-orange-dark: #C7461A;
+  --ubuntu-aubergine: #2C001E;
+  --ubuntu-aubergine-soft: #5E2750;
+
+  --panel-bg: rgba(248, 248, 246, 0.88);
+  --panel-bg-strong: rgba(255, 255, 255, 0.94);
+  --panel-border: rgba(80, 60, 70, 0.18);
+  --panel-shadow: 0 10px 30px rgba(20, 10, 20, 0.18);
+
+  --titlebar-bg: linear-gradient(#f6f5f3, #e9e5e1);
+  --titlebar-border: rgba(80, 60, 70, 0.12);
+
+  --text-main: #2C001E;
+  --text-soft: #5b4956;
+  --link: #C7461A;
+  --code-bg: rgba(70, 40, 60, 0.08);
+}
+
+/* DARK */
+:root {
+  --ubuntu-orange: #E95420;
+  --ubuntu-orange-dark: #C7461A;
+  --ubuntu-aubergine: #2C001E;
+  --ubuntu-aubergine-soft: #5E2750;
+
+  --panel-bg: rgba(40, 20, 35, 0.82);
+  --panel-bg-strong: rgba(34, 18, 30, 0.94);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --panel-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+  --titlebar-bg: linear-gradient(#3a1f33, #2c001e);
+  --titlebar-border: rgba(255, 255, 255, 0.08);
+
+  --text-main: #f4e9ef;
+  --text-soft: #d6c7cf;
+  --link: #ff9e7a;
+  --code-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* whole deck background */
+html,
+body,
+#app,
+.slidev-layout,
+.slidev-page {
+  font-family: 'Ubuntu', sans-serif;
+  color: var(--text-main);
+  background:
+    linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)),
+    url('https://www.spacebar.news/content/images/size/w1000/2025/05/15.04-Vivid-Vervet.png') center center / cover no-repeat fixed;
+}
+
+/* keep content inside a soft app-like panel */
+.slidev-layout {
+  padding: 2rem;
+}
+
+/* one clean central surface */
+.slidev-layout > div,
+.slidev-layout > section {
+  background: var(--panel-bg);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  box-shadow: var(--panel-shadow);
+  padding: 2rem 2.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 3.25rem;
+}
+
+.slidev-layout > div::before,
+.slidev-layout > section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 34px;
+  border-bottom: 1px solid var(--titlebar-border);
+  border-radius: 14px 14px 0 0;
+  background: var(--titlebar-bg);
+
+}
+
+
+/* headings */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  color: var(--text-main);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.slidev-layout h1 {
+  border-bottom: 3px solid var(--ubuntu-orange);
+  display: inline-block;
+  padding-bottom: 0.15em;
+  margin-bottom: 0.7em;
+}
+
+/* body text */
+.slidev-layout p,
+.slidev-layout li,
+.slidev-layout td,
+.slidev-layout th,
+.slidev-layout blockquote {
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.slidev-layout strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.slidev-layout a {
+  color: var(--link);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+}
+
+/* code */
+code {
+  background: var(--code-bg) !important;
+  color: var(--text-main) !important;
+  border-radius: 6px;
+  padding: 0.12rem 0.35rem;
+}
+
+pre {
+  background: var(--panel-bg-strong);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+pre code,
+.shiki code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+pre,
+.shiki {
+  background: var(--panel-bg-strong) !important;
+  color: var(--text-main) !important;
+}
+
+.shiki span {
+  color: inherit;
+}
+
+/* catch all code headers */
+.shiki-header,
+pre + .shiki-header,
+.slidev-code-header {
+  background: var(--titlebar-bg) !important;
+  border-bottom: 1px solid var(--titlebar-border) !important;
+  color: var(--text-soft) !important;
+}
+
+/* tables */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--panel-bg-strong);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid rgba(60, 40, 50, 0.08);
+}
+
+th {
+  background: rgba(233, 84, 32, 0.10);
+  color: var(--text-main);
+  text-align: left;
+}
+
+/* blockquotes */
+blockquote {
+  background: var(--panel-bg-strong);
+  border-left: 5px solid var(--ubuntu-orange);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+}
+
+/* subtle "system app" buttons */
+button,
+.btn,
+a.button {
+  font-family: 'Ubuntu', sans-serif;
+  color: var(--text-main);
+  background: linear-gradient(#fdfdfc, #ece9e6);
+  border: 1px solid rgba(90, 70, 80, 0.28);
+  border-radius: 8px;
+  padding: 0.38rem 0.85rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    0 1px 2px rgba(0,0,0,0.08);
+  text-decoration: none;
+}
+
+button:hover,
+.btn:hover,
+a.button:hover {
+  background: linear-gradient(#ffffff, #f1eeeb);
+}
+
+/* optional title slide feel */
+.slidev-layout.cover > div,
+.slidev-layout.center > div {
+  background: var(--panel-bg);
+}
+
+/* bullets */
+.slidev-layout ul li::marker {
+  color: var(--ubuntu-orange);
+}
