@@ -41,7 +41,7 @@ where failures are not just software bugs, but can have
 </div>
 
 <div class="pt-8 text-lg opacity-90 max-w-3xl mx-auto">
-Security here affects safety, reliability, and trust — across research, industry, and commercial systems with very different constraints.
+Security here affects safety, reliability, and trust, across research, industry, and commercial systems with very different constraints.
 </div>
 </div>
 
