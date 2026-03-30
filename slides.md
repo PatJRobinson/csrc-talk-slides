@@ -34,7 +34,10 @@ layout: default
 
 <div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
 <div class="text-xl leading-snug max-w-4xl mx-auto pt-6">
-Robotics systems are increasingly deployed in real-world environments — where failures are not just software bugs, but can have <span class="font-bold">physical and safety-critical consequences</span>.
+Robotics systems are increasingly deployed in real-world environments
+
+where failures are not just software bugs, but can have  
+<span class="font-bold">physical and safety-critical consequences</span>.
 </div>
 
 <div class="pt-8 text-lg opacity-90 max-w-3xl mx-auto">
@@ -165,7 +168,6 @@ flowchart LR
 <div class="pt-6 text-xl max-w-3xl mx-auto">
 
 • What assumptions are trusted?  
-• What happens when behaviour changes?
 
 </div>
 
@@ -218,9 +220,11 @@ We still have only a <span class="font-semibold">limited understanding</span> of
 
 <div class="pt-8 text-lg max-w-3xl mx-auto opacity-90">
 
-Different settings — research labs, startups, industrial systems — involve different constraints, priorities, and risk practices.
+Different settings
 
-Yet we often assume a stable system and a uniform developer.
+- research labs, startups, industrial systems 
+
+involve <span class="font-semibold">different constraints, priorities, and risk practices.</span>
 
 </div>
 </div>
@@ -260,23 +264,30 @@ layout: default
 
 # Why this approach
 
-<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
-<div class="text-xl leading-snug max-w-4xl mx-auto">
+<div class="ubuntu-window max-w-4xl mx-auto">
 
-Secure systems emerge from the interaction between  
-<span class="font-semibold">architecture, tools, constraints, and developer judgement</span>
-
-—not just technical controls in isolation.
-
+<div class="text-2xl leading-snug">
+Secure systems emerge from the interaction between
 </div>
 
-<div class="pt-10 text-lg opacity-90 max-w-3xl mx-auto">
-
-If we ignore practice, we risk designing solutions that are difficult to adopt or misaligned with real workflows.
-
-</div>
+<div class="pt-3 text-3xl leading-snug font-semibold">
+architecture, tools, constraints, and developer judgement
 </div>
 
+<div class="pt-4 text-lg italic opacity-90">
+not just technical controls in isolation
+</div>
+
+<div class="pt-8 text-xl">
+If we ignore practice, we risk:
+</div>
+
+<ul class="pt-3 text-xl leading-relaxed">
+  <li>barriers to adoption</li>
+  <li>misalignment with real workflows</li>
+</ul>
+
+</div>
 ---
 transition: slide-left
 layout: default
@@ -284,18 +295,24 @@ layout: default
 
 # Closing
 
-<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto pt-6">
-<div class="text-2xl max-w-4xl mx-auto pt-6">
+<div class="ubuntu-window max-w-4xl mx-auto">
 
-If we want to improve security in robotics,  
-we need to understand not only the technology,  
-but the <span class="font-semibold">practices through which systems are built</span>.
+<div class="text-2xl leading-snug">
+If we want to improve security in robotics,
+</div>
 
+<div class="pt-3 text-xl opacity-90">
+we need to understand not only the technology
+</div>
+
+<div class="pt-4 text-3xl font-semibold leading-snug">
+but the practices through which systems are built
 </div>
 
 <div class="pt-10 text-lg opacity-85">
-Early-stage work — feedback and conversations very welcome
+Early-stage work, feedback and conversations very welcome
 </div>
+
 </div>
 
 ---
