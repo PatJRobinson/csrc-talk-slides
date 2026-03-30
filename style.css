@@ -28,13 +28,15 @@
   --ubuntu-aubergine: #2C001E;
   --ubuntu-aubergine-soft: #5E2750;
 
-  --panel-bg: rgba(40, 20, 35, 0.82);
+  --panel-bg: rgba(40, 20, 35, 0.94);
   --panel-bg-strong: rgba(34, 18, 30, 0.94);
   --panel-border: rgba(255, 255, 255, 0.12);
   --panel-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
-  --titlebar-bg: linear-gradient(#3a1f33, #2c001e);
+  --titlebar-bg: #2C2C2C;
   --titlebar-border: rgba(255, 255, 255, 0.08);
+  --titlebar-text: "user@ubuntu:~/slides";
+  --titlebar-text-color: #ffffff;
 
   --text-main: #f4e9ef;
   --text-soft: #d6c7cf;
@@ -50,10 +52,27 @@ body,
 .slidev-page {
   font-family: 'Ubuntu', sans-serif;
   color: var(--text-main);
+
   background:
-    linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)),
-    url('https://www.spacebar.news/content/images/size/w1000/2025/05/15.04-Vivid-Vervet.png') center center / cover no-repeat fixed;
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.035) 0,
+      rgba(255,255,255,0.035) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.02) 0,
+      rgba(0,0,0,0.02) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    linear-gradient(180deg, #e8dde3 0%, #d4c7cf 100%);
+
+
 }
+
 
 /* keep content inside a soft app-like panel */
 .slidev-layout {
@@ -61,9 +80,15 @@ body,
 }
 
 /* one clean central surface */
-.slidev-layout > div,
-.slidev-layout > section {
-  background: var(--panel-bg);
+.ubuntu-window {
+  background:
+    radial-gradient(
+      ellipse at top center,
+      rgba(255,255,255,0.03) 0%,
+      rgba(255,255,255,0.01) 35%,
+      rgba(0,0,0,0.02) 100%
+    ),
+   var(--panel-bg);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid var(--panel-border);
@@ -74,10 +99,18 @@ body,
   margin: 0 auto;
   position: relative;
   padding-top: 3.25rem;
+  overflow: hidden;
 }
 
-.slidev-layout > div::before,
-.slidev-layout > section::before {
+.ubuntu-window > *:first-child {
+  margin-top: 0.5rem;
+}
+
+.ubuntu-window svg {
+  margin-top: 0.75rem;
+}
+
+.ubuntu-window::before {
   content: '';
   position: absolute;
   left: 0;
@@ -87,26 +120,116 @@ body,
   border-bottom: 1px solid var(--titlebar-border);
   border-radius: 14px 14px 0 0;
   background: var(--titlebar-bg);
-
 }
 
+.ubuntu-window::after {
+  content: var(--titlebar-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--titlebar-text-color);
+  opacity: 0.9;
+  pointer-events: none;
+}
 
 /* headings */
 .slidev-layout h1,
 .slidev-layout h2,
 .slidev-layout h3,
-.slidev-layout h4 {
-  color: var(--text-main);
+.slidev-layout h4,
+.slidev-layout p,
+.slidev-layout li,
+.slidev-layout td,
+.slidev-layout th,
+.slidev-layout blockquote,
+.slidev-layout strong {
+   color: var(--ubuntu-aubergine);
   font-weight: 500;
   letter-spacing: 0;
 }
 
 .slidev-layout h1 {
+  margin-top: 0;
   border-bottom: 3px solid var(--ubuntu-orange);
   display: inline-block;
   padding-bottom: 0.15em;
   margin-bottom: 0.7em;
 }
+
+.slidev-layout.text-center h1,
+.slidev-layout.text-center h2,
+.slidev-layout.text-center h3,
+.slidev-layout.text-center h4,
+.slidev-layout.text-center p,
+.slidev-layout.text-center li,
+.slidev-layout.text-center div {
+  color: var(--ubuntu-aubergine);
+}
+
+/* headings and text inside windows */
+.slidev-layout .ubuntu-window h1,
+.slidev-layout .ubuntu-window h2,
+.slidev-layout .ubuntu-window h3,
+.slidev-layout .ubuntu-window h4,
+.slidev-layout .ubuntu-window p,
+.slidev-layout .ubuntu-window li,
+.slidev-layout .ubuntu-window td,
+.slidev-layout .ubuntu-window th,
+.slidev-layout .ubuntu-window blockquote,
+.slidev-layout .ubuntu-window strong {
+  color: var(--text-main);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.slidev-layout .ubuntu-window h1 {
+  margin-top: 0;
+  border-bottom: 3px solid var(--ubuntu-orange);
+  display: inline-block;
+  padding-bottom: 0.15em;
+  margin-bottom: 0.7em;
+}
+
+
+/* .ubuntu-window h1, */
+/* .ubuntu-window h2, */
+/* .ubuntu-window h3, */
+/* .ubuntu-window h4, */
+/* .ubuntu-window p, */
+/* .ubuntu-window li, */
+/* .ubuntu-window td, */
+/* .ubuntu-window th, */
+/* .ubuntu-window blockquote, */
+/* .ubuntu-window strong { */
+/*   color: var(--text-main); */
+/*   font-weight: 500; */
+/*   letter-spacing: 0; */
+/* } */
+/**/
+/* .slidev-layout h1, */
+/* .slidev-layout h2, */
+/* .slidev-layout h3, */
+/* .slidev-layout h4 { */
+/*   color: var(--ubuntu-aubergine); */
+/*   font-weight: 500; */
+/*   letter-spacing: 0; */
+/* } */
+/**/
+/* .slidev-layout h1 { */
+/**/
+/*   margin-top: 0; */
+/*   border-bottom: 3px solid var(--ubuntu-orange); */
+/*   display: inline-block; */
+/*   padding-bottom: 0.15em; */
+/*   margin-bottom: 0.7em; */
+/* } */
 
 /* body text */
 .slidev-layout p,
@@ -222,12 +345,6 @@ button:hover,
 .btn:hover,
 a.button:hover {
   background: linear-gradient(#ffffff, #f1eeeb);
-}
-
-/* optional title slide feel */
-.slidev-layout.cover > div,
-.slidev-layout.center > div {
-  background: var(--panel-bg);
 }
 
 /* bullets */

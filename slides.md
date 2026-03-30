@@ -1,5 +1,4 @@
 ---
-theme: seriph
 title: Securing Robotics in Practice
 info: |
   ## Securing Robotics in Practice
@@ -14,42 +13,54 @@ monaco: false
 mdc: true
 ---
 
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+
 # Securing Robotics in Practice
 ## Developer Workflows, Architecture, and the ROS2 Ecosystem
 
 Patrick Robinson  
 patrick2.robinson@live.uwe.ac.uk
 
-<div class="pt-8 text-lg opacity-80">
 A short talk on security, architecture, and real-world robotics practice
 </div>
 
-<!--
-Open simply.
+---
+transition: slide-left
+layout: default
+---
 
-Suggested opening:
-"As robotics systems move into real-world deployment, ensuring their security becomes increasingly important. But in practice, securing robotics systems is surprisingly difficult."
--->
+# Why this matters
+
+
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+<div class="text-xl leading-snug max-w-4xl mx-auto pt-6">
+Robotics systems are increasingly deployed in real-world environments — where failures are not just software bugs, but can have <span class="font-bold">physical and safety-critical consequences</span>.
+</div>
+
+<div class="pt-8 text-lg opacity-90 max-w-3xl mx-auto">
+Security here affects safety, reliability, and trust — across research, industry, and commercial systems with very different constraints.
+</div>
+</div>
 
 ---
 transition: slide-left
-layout: center
+layout: default
 ---
 
 # The core claim
 
-<div class="text-3xl leading-snug max-w-4xl mx-auto pt-6">
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+<div class="text-xl leading-snug max-w-4xl mx-auto pt-6">
 In robotics, security is often shaped not just by <span class="font-bold">bugs in code</span>,
 but by <span class="font-bold">how systems are assembled</span>.
-</div>
 
-<div class="grid grid-cols-3 gap-8 pt-12 text-left max-w-5xl mx-auto">
+<div class="grid grid-cols-3 gap-8 pt-12 text-left max-w-4xl mx-auto">
 <div>
 <h3 class="pb-2">Workflows</h3>
 <ul>
 <li>rapid integration</li>
 <li>toolchain churn</li>
-<li>time and resource constraints</li>
+<li>time constraints</li>
 </ul>
 </div>
 <div>
@@ -65,16 +76,12 @@ but by <span class="font-bold">how systems are assembled</span>.
 <ul>
 <li>research vs industry</li>
 <li>different risk tolerances</li>
-<li>different compliance pressures</li>
+<li>different constraints</li>
 </ul>
 </div>
 </div>
-
-<!--
-This slide states the argument plainly.
-Do not over-explain yet.
-End with: "So the question is not just whether a component is secure, but how security is produced across the system."
--->
+</div>
+</div>
 
 ---
 transition: slide-left
@@ -82,238 +89,214 @@ transition: slide-left
 
 # A typical robotics system
 
-<div class="text-lg leading-7 pr-4">
-This is a deliberately simplified example, but it captures the shape of many modern robotics systems:
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+<div class="text-lg leading-7 max-w-4xl">
 
-- sensors, perception, planning, control
-- extra components added over time
-- operator and cloud-facing interfaces
-- communication over ROS2 / DDS
+Even in a simplified setup:
 
-<div class="pt-4 font-semibold">
-Even a "normal" setup is already distributed, heterogeneous, and interconnected.
-</div>
-</div>
-
-<!--
-Walk left to right.
-
-Suggested script:
-"You have sensors feeding perception, then planning, then control, which ultimately drives behaviour. But these systems are not self-contained. They often include third-party nodes, operator interfaces, and external services, all connected through middleware like ROS2 using DDS."
--->
-
----
-transition: none
----
-# A typical robotics system
-
-<div class="text-lg leading-7 pr-4">
-
-```mermaid {theme: 'neutral', scale: 0.6}
-flowchart LR
-  S[Sensors] --> P[Perception Node]
-  P --> PL[Planning Node]
-  PL --> C[Control Node]
-  C --> A[Actuators]
-
-  TP[Third-party Node] --> P
-  UI[Operator UI] <--> PL
-  CL[Cloud Service] <--> TP
-
-  ROS2[(ROS2 / DDS)]
-  P --- ROS2
-  PL --- ROS2
-  C --- ROS2
-  TP --- ROS2
-```
+- sensors → perception → planning → control
+- additional components added over time
+- operator interfaces and external services
+- communication via ROS2 / DDS
 
 <div class="pt-4 font-semibold">
- - 
+Already distributed, heterogeneous, and interconnected.
 </div>
 
 </div>
-
----
-transition: slide-up
----
-# A typical robotics system
-
-<div class="text-lg leading-7 pr-4">
-
-```mermaid {theme: 'neutral', scale: 0.6}
-flowchart LR
-  S[Sensors] --> P[Perception Node]
-  P --> PL[Planning Node]
-  PL --> C[Control Node]
-  C --> A[Actuators]
-
-  TP[Third-party Node] --> P
-  UI[Operator UI] <--> PL
-  CL[Cloud Service] <--> TP
-
-  ROS2[(ROS2 / DDS)]
-  P --- ROS2
-  PL --- ROS2
-  C --- ROS2
-  TP --- ROS2
-```
-
-<div class="pt-4 font-semibold">
-Even a "normal" setup is already distributed, heterogeneous, and interconnected.
 </div>
-
-</div>
-
 
 ---
 transition: slide-left
-layout: two-cols
-layoutClass: gap-10
+layout: default
+---
+
+# A typical robotics system
+
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+
+```mermaid {theme: 'neutral', scale: 0.68}
+flowchart LR
+  S[Sensor]
+  P[Perception]
+  PL[Planning]
+  C[Control]
+  A[Actuators]
+
+  S --> P --> PL --> C --> A
+
+  UI[Operator UI] -.-> PL
+  TP[3rd-party Node] -.-> P
+  CL[Cloud Service] -.-> TP
+```
+
+<div class="pt-6 text-lg opacity-80">
+Multiple components, interacting across a distributed system
+</div>
+</div>
+
+---
+transition: slide-left
+layout: default
 ---
 
 # Where does security actually live?
 
-<div class="text-lg leading-7 pr-4">
-Imagine a new component is added quickly:
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
 
-- open-source package
-- vendor-supplied module
-- code from another internal team
-
-<div class="pt-4">
-The system may still <span class="font-semibold">work</span> — but security questions now sit across configuration, middleware, trust assumptions, and interfaces between components.
-</div>
-
-<div class="pt-6 text-2xl font-semibold">
-Not in one place — across the system.
-</div>
-</div>
-
-::right::
-
-```mermaid {theme: 'neutral', scale: 0.9}
+```mermaid {theme: 'neutral', scale: 0.68}
 flowchart LR
-  S[Sensors] --> P[Perception Node]
-  P --> PL[Planning Node]
-  PL --> C[Control Node]
-  C --> A[Actuators]
+  S[Sensor]
+  P[Perception]
+  PL[Planning]
+  C[Control]
+  A[Actuators]
 
-  TP["New / third-party node"] --> P
-  UI[Operator UI] <--> PL
-  CL[Cloud Service] <--> TP
+  S --> P --> PL --> C --> A
 
-  ROS2[(ROS2 / DDS)]
-  P --- ROS2
-  PL --- ROS2
-  C --- ROS2
-  TP --- ROS2
+  UI[Operator UI] -.-> PL
+  TP[3rd-party Node] -.-> P
+  CL[Cloud Service] -.-> TP
 
   classDef risk fill:#fbe4e6,stroke:#cc3344,stroke-width:2px,color:#111;
   class TP risk;
 ```
 
-<div class="absolute bottom-12 right-12 w-[34%] text-base bg-white/70 dark:bg-black/20 p-3 rounded">
-<ul>
-<li>Who can publish data?</li>
-<li>What assumptions are trusted?</li>
-<li>What happens when behaviour changes?</li>
-</ul>
+<div class="pt-6 text-xl max-w-3xl mx-auto">
+
+• What assumptions are trusted?  
+• What happens when behaviour changes?
+
 </div>
 
-<!--
-Suggested script:
-"Now imagine we integrate a new component quickly to meet a deadline. The robot still works. But who authenticates that node? What assumptions does it make about the network? What happens if it publishes unexpected data? At that point, security is not located in one file or one bug. It is distributed across the way the system has been assembled."
--->
+<div class="pt-6 text-2xl font-semibold">
+Not in one place - across the system
+</div>
+</div>
 
 ---
 transition: slide-left
-layout: two-cols
+layout: default
+---
+
+# Why ROS2?
+
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+
+<div class="text-lg leading-7 max-w-4xl">
+
+ROS2 has become a major ecosystem for robotics development.
+
+It is designed around:
+
+- modularity  
+- composability  
+- distributed communication  
+- rapid integration and prototyping  
+
+<div class="pt-6 font-semibold text-xl">
+A useful lens for studying how security is actually produced in practice
+</div>
+
+</div>
+
+</div>
+
+---
+transition: slide-left
+layout: default
+---
+
+# The research gap
+
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+<div class="text-xl leading-snug max-w-4xl mx-auto">
+
+We still have only a <span class="font-semibold">limited understanding</span> of how developers across different domains and contexts approach security in practice.
+
+</div>
+
+<div class="pt-8 text-lg max-w-3xl mx-auto opacity-90">
+
+Different settings — research labs, startups, industrial systems — involve different constraints, priorities, and risk practices.
+
+Yet we often assume a stable system and a uniform developer.
+
+</div>
+</div>
+
+---
+transition: slide-left
+layout: default
 layoutClass: gap-12
 ---
 
-# So what is the research?
+# What I’m doing
 
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
 <div class="text-lg leading-7">
-I am studying how security is approached <span class="font-semibold">in practice</span> across diverse robotics contexts.
 
-<div class="pt-4"></div>
-
-### Empirical strand
+### Empirical work
 - surveys
 - semi-structured interviews
-- sampling across research, commercial, and industrial settings
+- across research, commercial, and industrial contexts
 
-### Analytical strand
-- how standards and frameworks define system boundaries
-- what counts as a "robotic system"
-- how those assumptions shape security thinking
+### Focus
+- workflows and tools  
+- architectural decisions  
+- how security is actually handled in practice  
+
+<div class="pt-6 opacity-90">
+Understanding how security is shaped by real-world constraints and decisions
 </div>
 
-::right::
-
-```mermaid {theme: 'neutral', scale: 0.95}
-flowchart TD
-  A[Different robotics contexts] --> B[Workflows and tools]
-  A --> C[Architectural decisions]
-  A --> D[Security priorities]
-  E[Standards / frameworks] --> C
-  E --> D
-  B --> F[Observed practices]
-  C --> F
-  D --> F
-  F --> G[Practical security interventions]
-```
-
-<div class="pt-4 text-base opacity-80">
-The aim is not a single universal account, but a better map of how security is produced under different conditions.
 </div>
-
-<!--
-This is where you briefly acknowledge diversity and instability without becoming too philosophical.
-If needed say: "Part of the work is also about how these systems are framed and categorised in the first place, because those categories affect who we recruit, what we ask, and what counts as security-relevant." 
--->
+</div>
 
 ---
 transition: slide-left
-layout: center
+layout: default
 ---
 
-# Why this matters
+# Why this approach
 
-<div class="grid grid-cols-3 gap-8 text-left max-w-5xl mx-auto pt-8">
-<div>
-<h3 class="pb-2">For research</h3>
-<ul>
-<li>moves beyond isolated vulnerabilities</li>
-<li>connects security to architecture and practice</li>
-<li>helps map a fragmented space</li>
-</ul>
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto">
+<div class="text-xl leading-snug max-w-4xl mx-auto">
+
+Secure systems emerge from the interaction between  
+<span class="font-semibold">architecture, tools, constraints, and developer judgement</span>
+
+—not just technical controls in isolation.
+
 </div>
-<div>
-<h3 class="pb-2">For practitioners</h3>
-<ul>
-<li>surfaces real friction points</li>
-<li>fits security to existing workflows</li>
-<li>avoids unrealistic assumptions</li>
-</ul>
-</div>
-<div>
-<h3 class="pb-2">For robotics</h3>
-<ul>
-<li>supports safer deployment</li>
-<li>better design-stage reasoning</li>
-<li>more robust system integration</li>
-</ul>
+
+<div class="pt-10 text-lg opacity-90 max-w-3xl mx-auto">
+
+If we ignore practice, we risk designing solutions that are difficult to adopt or misaligned with real workflows.
+
 </div>
 </div>
 
-<div class="pt-10 text-2xl font-semibold max-w-4xl mx-auto">
-If we want secure robots in the real world, we need to understand how security is actually made in the systems people build.
+---
+transition: slide-left
+layout: default
+---
+
+# Closing
+
+<div class="ubuntu-window text-xl leading-snug max-w-4xl mx-auto pt-6">
+<div class="text-2xl max-w-4xl mx-auto pt-6">
+
+If we want to improve security in robotics,  
+we need to understand not only the technology,  
+but the <span class="font-semibold">practices through which systems are built</span>.
+
 </div>
 
-<!--
-Slow down here. This is the payoff slide.
--->
+<div class="pt-10 text-lg opacity-85">
+Early-stage work — feedback and conversations very welcome
+</div>
+</div>
 
 ---
 transition: slide-left
@@ -338,9 +321,3 @@ security · integration · architecture · ROS2 workflows
 <div class="pt-12">
 patrick2.robinson@live.uwe.ac.uk
 </div>
-
-<!--
-Possible close:
-"At this stage, I am especially interested in speaking to people who have run into security, integration, or architectural challenges in practice."
--->
-
