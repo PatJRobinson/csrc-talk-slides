@@ -108,7 +108,6 @@ Already distributed, heterogeneous, and interconnected.
 
 </div>
 </div>
-
 ---
 transition: slide-left
 layout: default
@@ -136,6 +135,126 @@ flowchart LR
 <div class="pt-6 text-lg opacity-80">
 Multiple components, interacting across a distributed system
 </div>
+</div>
+
+
+---
+transition: slide-left
+layout: center
+
+---
+
+<div class="relative w-full max-w-4xl mx-auto">
+
+  <img
+    src="/images/amr-seer-group.png"
+    class="w-[55%] mx-auto object-contain"
+    alt="AMR SEER group"
+  />
+
+  <div class="text-center text-[#2C001E] space-y-4">
+    Image: Seer Robotics (seer-robotics.ai)
+  </div>
+
+  <div
+    v-mark="{ at: 1, color: 'cyan', type: 'circle' }"
+    class="absolute left-[41%] top-[71%] w-[4%] h-[5%]"
+  ></div>
+
+  <Arrow
+  v-motion
+  :initial="{ opacity: 0, scale: 0.8 }"
+  :enter="{ opacity: 1, scale: 1 }"
+  :click-2="{ opacity: 1, scale: 1 }"
+    v-click="2"
+    x1="70%"
+    y1="85%"
+    x2="62%"
+    y2="78%"
+    color="blue"
+    width="2"
+  />
+
+<div class="absolute left-0 top-[20%] w-[20%] text-left text-[#2C001E] space-y-4">
+
+  <div class="inline-block">
+      <span
+        v-click="1"
+        v-mark="{ at: 1, color: 'cyan', type: 'underline' }"
+        class="text-lg leading-snug"
+      >
+        Sensors
+      </span>
+  </div>
+
+  <div>
+  </div>
+
+  <div class="inline-block">
+      <span
+        v-click="2"
+        v-mark="{ at: 2, color: 'blue', type: 'underline' }"
+        class="text-lg leading-snug"
+      >
+        Actuation
+      </span>
+  </div>
+
+</div>
+
+<div class="absolute left-0 top-[20%] left-[80%] w-[100%] text-right text-[#2C001E] space-y-4">
+
+  <div class="inline-block">
+      <span
+        v-click="3"
+      >
+        Perception?
+      </span>
+  </div>
+
+  <div>
+  </div>
+
+  <div class="inline-block">
+      <span
+        v-click="4"
+        class="text-lg leading-snug"
+      >
+        Planning?
+      </span>
+  </div>
+
+  <div>
+  </div>
+
+  <div class="inline-block">
+      <span
+        v-click="5"
+        class="text-lg leading-snug"
+      >
+        Control?
+      </span>
+  </div>
+
+  <div>
+  </div>
+
+</div>
+
+</div>
+
+<div
+  v-click="6"
+  class="absolute left-[5%] bottom-[5%] w-[32%] text-left annotation-fade"
+>
+  <div class="annotation-card px-4 py-3">
+    <p class="annotation-card-title">
+      A robot extends beyond its physical boundary
+    </p>
+    <p class="annotation-card-body font-semibold">
+    The integration defines the system
+    </p>
+  </div>
 </div>
 
 ---

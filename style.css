@@ -351,3 +351,61 @@ a.button:hover {
 .slidev-layout ul li::marker {
   color: var(--ubuntu-orange);
 }
+
+/* 'hand-drawn' annotations */
+.draw-circle {
+  stroke-dasharray: 754;
+  stroke-dashoffset: 754;
+}
+
+.slidev-vclick-current .draw-circle {
+  animation: draw 1s ease forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.annotation-card {
+  background: rgba(44, 0, 30, 0.92);
+  color: #f4e9ef;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.annotation-card-title,
+.annotation-card-body {
+  margin: 0;
+  color: var(--ubuntu-aubergine);
+  white-space: normal;
+}
+
+.annotation-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.annotation-card-body {
+  padding-top: 0.45rem;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  opacity: 0.92;
+}
+
+.annotation-fade {
+  opacity: 1;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* when active (Slidev adds this class) */
+.slidev-vclick-current .annotation-fade {
+  opacity: 1;
+  transform: translateY(0);
+}
